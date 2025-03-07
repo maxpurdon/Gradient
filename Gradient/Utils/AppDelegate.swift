@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import UserNotifications
 
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Configure Firebase
@@ -19,9 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Configure notifications
         UNUserNotificationCenter.current().delegate = self
         
+        // Set up window and root view controller
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let projectListVC = ProjectListViewController()
+        let navigationController = UINavigationController(rootViewController: projectListVC)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
         return true
     }
     
+    // Remove or comment out the scene methods if you're not using scenes
+    /*
     // MARK: - UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
@@ -30,7 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
     }
+    */
     
+    // Rest of the methods...
+}
     // MARK: - UNUserNotificationCenterDelegate
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Show notification even when app is in foreground
@@ -42,4 +56,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // In a real app, we would navigate to the relevant task
         completionHandler()
     }
-}
