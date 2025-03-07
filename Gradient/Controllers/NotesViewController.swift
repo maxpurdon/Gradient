@@ -365,12 +365,8 @@ class NoteCell: UITableViewCell {
         attachmentsView.isHidden = note.attachments.isEmpty
         
         // Configure location label
-        if let location = note.location {
-            locationLabel.text = "📍 Location"
-            locationLabel.isHidden = false
-        } else {
-            locationLabel.isHidden = true
-        }
+        locationLabel.text = "📍 Location"
+        locationLabel.isHidden = note.location == nil
     }
     
     override func prepareForReuse() {
@@ -1218,7 +1214,7 @@ class ViewNoteViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(attachmentTapped(_:)))
         containerView.addGestureRecognizer(tapGesture)
         containerView.isUserInteractionEnabled = true
-        containerView.tag = attachment.hashValue // Use hash to identify attachment
+        containerView.tag = attachment.id.hashValue // Use hash to identify attachment
         
         return containerView
     }
@@ -1228,7 +1224,7 @@ class ViewNoteViewController: UIViewController {
         
         // Find attachment based on view tag
         let attachmentHash = view.tag
-        guard let attachment = note.attachments.first(where: { $0.hashValue == attachmentHash }) else { return }
+        guard let attachment = note.attachments.first(where: { $0.id.hashValue == attachmentHash }) else { return }
         
         // In a real app, we would open the attachment
         let alert = UIAlertController(title: "Attachment", message: "Would open \(attachment.fileURL)", preferredStyle: .alert)

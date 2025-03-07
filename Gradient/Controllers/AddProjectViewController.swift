@@ -30,7 +30,7 @@ class AddProjectViewController: UIViewController {
     private let materialsFoundTextField = UITextField()
     
     private let statusLabel = UILabel()
-    private let statusSegmentedControl = UISegmentedControl()
+    private var statusSegmentedControl = UISegmentedControl()
     
     private let saveButton = UIButton(type: .system)
     private let cancelButton = UIButton(type: .system)

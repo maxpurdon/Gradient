@@ -103,18 +103,19 @@ class ProjectDetailViewController: UIViewController {
         showProjectDetails()
     }
     
-    // MARK: - Helper Methods
     private func showTasksView() {
-        addChildViewController(tasksViewController)
+        setupChildViewController(tasksViewController)
         currentViewController = tasksViewController
     }
-    
+
     private func showNotesView() {
-        addChildViewController(notesViewController)
+        setupChildViewController(notesViewController)
         currentViewController = notesViewController
     }
     
-    private func addChildViewController(_ childViewController: UIViewController) {
+    // Keep your custom method named addChildViewController to avoid confusion
+    // Use a completely different name to avoid any confusion with system methods
+    private func setupChildViewController(_ childViewController: UIViewController) {
         // Remove current child view controller
         if let currentViewController = currentViewController {
             currentViewController.willMove(toParent: nil)
@@ -123,7 +124,7 @@ class ProjectDetailViewController: UIViewController {
         }
         
         // Add new child view controller
-        addChild(childViewController)
+        addChild(childViewController)  // Use system method here
         childViewController.view.frame = containerView.bounds
         childViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.addSubview(childViewController.view)
