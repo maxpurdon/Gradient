@@ -1,3 +1,11 @@
+//
+//  FirebaseManager.swift
+//  Gradient
+//
+//  Created by Andrew Purdon on 06/03/2025.
+//
+
+
 import Foundation
 import FirebaseCore
 import FirebaseFirestore

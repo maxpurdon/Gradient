@@ -1,3 +1,11 @@
+//
+//  Task.swift
+//  Gradient
+//
+//  Created by Andrew Purdon on 06/03/2025.
+//
+
+
 import Foundation
 
 struct Task: Codable {
